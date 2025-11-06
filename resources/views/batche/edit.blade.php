@@ -8,12 +8,17 @@
         <form action="{{ url('batches/' .$batch->id) }}" method="post">
             {!! csrf_field() !!}
             @method("PATCH")
+            <input type="hidden" name="id" id="id" value="{{ $batch->id }}" />
             <label>BATCH NAME</label></br>
-            <input type="text" name="name" id="name" class="form-control"></br>
+            <input type="text" name="name" id="name" class="form-control" value="{{ $batch->name }}"></br>
             <label>Course Name</label></br>
-            <input type="text" name="course_id" id="course_id" class="form-control"></br>
+            <select class="form-control" name="course_id" id="course_id">
+                @foreach($courses as $id=>$course_name)
+                <option value="{{$id}}">{{$course_name}}</option>
+                @endforeach
+            </select></br>
             <label>Start Date</label></br>
-            <input type="date" name="start_date" id="start_date" class="form-control"></br>
+            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $batch->start_date }}"></br>
             <input type="submit" value="Update" class="btn btn-success"></br>
         </form>
     </div>

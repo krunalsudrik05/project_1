@@ -53,7 +53,9 @@ class EnrollmentController extends Controller
     public function edit(string $id)
     {
         $enrollment = Enrollment::find($id);
-        return view('enrollment.edit', compact('enrollment'));
+        $batches = \App\Models\Batch::pluck('name', 'id');
+        $students = \App\Models\Student::pluck('name', 'id');
+        return view('enrollment.edit', compact('enrollment', 'batches', 'students'));
     }
 
     /**
